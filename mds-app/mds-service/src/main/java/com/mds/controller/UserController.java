@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mds.mapper.UsersMapper;
+import com.mds.model.BlogEntry;
 import com.mds.model.Users;
 
 @RestController
@@ -46,5 +47,10 @@ public class UserController {
 		} else {
 			return new ResponseEntity<Object>(user, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	@GetMapping("/tagJoin")
+	public List<BlogEntry> getTagJoin() {
+		return usersMapper.findTagJoin();
 	}
 }

@@ -14,11 +14,11 @@ import com.mds.mapper.UsersMapper;
  * Hello world!
  *
  */
+@ComponentScan("com.mds")
 @MappedTypes(UsersMapper.class)
 @MapperScan("com.mds.mapper")
 @SpringBootApplication
 @EnableCaching
-@ComponentScan("com.mds")
 public class MdsSpringBootApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(MdsSpringBootApplication.class, args);
