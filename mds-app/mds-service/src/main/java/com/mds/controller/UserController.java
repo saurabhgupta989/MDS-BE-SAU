@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mds.mapper.UsersMapper;
 import com.mds.model.BlogEntry;
 import com.mds.model.Users;
+import com.mds.service.UserService;
 
 @RestController
 public class UserController {
 
 	@Autowired
 	private UsersMapper usersMapper;
+
+	@Autowired
+	private UserService userService;
 
 	@GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> index() {
@@ -34,16 +38,16 @@ public class UserController {
 
 	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getAll() {
-		List<Users> listOfUsers = usersMapper.findAll();
+		List<Users> listOfUsers = userService.fetchAllUsers();
 		return new ResponseEntity<Object>(listOfUsers, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> insert(@RequestBody Users user) {
-		Integer isInserted = usersMapper.insert(user);
+		Integer isInserted = userService.insert(user);
+
 		if (isInserted > 0) {
 			return new ResponseEntity<Object>(user, HttpStatus.OK);
-
 		} else {
 			return new ResponseEntity<Object>(user, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
