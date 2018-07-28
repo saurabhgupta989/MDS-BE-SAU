@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: mds-data
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: SAURABH
+Implementation-Vendor-Id: com.mds
+Build-Jdk: 1.8.0_171
+Implementation-URL: http://www.example.com
+Created-By: Maven Integration for Eclipse
+
