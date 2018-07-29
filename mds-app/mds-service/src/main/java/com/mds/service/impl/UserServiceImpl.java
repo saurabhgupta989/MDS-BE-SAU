@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mds.mapper.UsersMapper;
+import com.mds.dao.UserDao;
 import com.mds.model.Users;
 import com.mds.service.UserService;
 
@@ -13,17 +13,17 @@ import com.mds.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UsersMapper usersMapper;
+	private UserDao userDao;
 
 	@Override
 	public List<Users> fetchAllUsers() {
-		List<Users> listOfUsers = usersMapper.findAll();
+		List<Users> listOfUsers = userDao.fetchAllUsers();
 		return listOfUsers;
 	}
 
 	@Override
 	public Integer insert(Users user) {
-		Integer isInserted = usersMapper.insert(user);
+		Integer isInserted = userDao.insert(user);
 		return isInserted;
 	}
 

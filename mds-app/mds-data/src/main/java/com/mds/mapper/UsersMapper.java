@@ -14,7 +14,7 @@ import com.mds.model.Users;
 public interface UsersMapper {
 
 	@Select("select * from users")
-	public List<Users> findAll();
+	public List<Users> fetchAllUsers();
 
 	@Insert("insert into users(name,salary) values (#{name}, #{salary})")
 	@SelectKey(statement = "select LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
