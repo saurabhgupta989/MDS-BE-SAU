@@ -2,11 +2,13 @@ package com.mds.service;
 
 import java.util.List;
 
-import com.mds.model.Users;
+import com.mds.model.User;
 
 public interface UserService {
 
-	public List<Users> fetchAllUsers();
+	public List<User> fetchAllUsers();
 
-	public Integer insert(Users user);
+	public Integer insert(User user);
+
+	public User findUserById(Integer id);
 }

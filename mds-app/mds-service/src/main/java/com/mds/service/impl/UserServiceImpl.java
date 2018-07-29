@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mds.dao.UserDao;
-import com.mds.model.Users;
+import com.mds.model.User;
 import com.mds.service.UserService;
 
 @Service
@@ -16,15 +16,21 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public List<Users> fetchAllUsers() {
-		List<Users> listOfUsers = userDao.fetchAllUsers();
+	public List<User> fetchAllUsers() {
+		List<User> listOfUsers = userDao.fetchAllUsers();
 		return listOfUsers;
 	}
 
 	@Override
-	public Integer insert(Users user) {
+	public Integer insert(User user) {
 		Integer isInserted = userDao.insert(user);
 		return isInserted;
+	}
+
+	@Override
+	public User findUserById(Integer id) {
+		User user = userDao.findUserById(id);
+		return user;
 	}
 
 }

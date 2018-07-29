@@ -1,10 +1,22 @@
 package com.mds.model;
 
-public class Users {
+import java.util.List;
 
+public class User {
+
+	private Integer id;
 	private String name;
 	private Long salary;
-	private Integer id;
+
+	private List<Dog> dogs;
+
+	public List<Dog> getDogs() {
+		return dogs;
+	}
+
+	public void setDogs(List<Dog> dogs) {
+		this.dogs = dogs;
+	}
 
 	public String getName() {
 		return name;

@@ -11,11 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mds.mapper.UsersMapper;
 import com.mds.model.BlogEntry;
-import com.mds.model.Users;
+import com.mds.model.User;
 import com.mds.service.UserService;
 
 @RestController
@@ -38,12 +39,18 @@ public class UserController {
 
 	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> getAll() {
-		List<Users> listOfUsers = userService.fetchAllUsers();
+		List<User> listOfUsers = userService.fetchAllUsers();
 		return new ResponseEntity<Object>(listOfUsers, HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/findUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> findUser(@RequestParam Integer id) {
+		User user = userService.findUserById(id);
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
+	}
+
 	@PostMapping(value = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> insert(@RequestBody Users user) {
+	public ResponseEntity<?> insert(@RequestBody User user) {
 		Integer isInserted = userService.insert(user);
 
 		if (isInserted > 0) {

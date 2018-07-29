@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mds.mapper.UsersMapper;
-import com.mds.model.Users;
+import com.mds.model.User;
 
 @Repository
 public class UserDao {
@@ -14,14 +14,19 @@ public class UserDao {
 	@Autowired
 	private UsersMapper usersMapper;
 
-	public List<Users> fetchAllUsers() {
-		List<Users> listOfUsers = usersMapper.fetchAllUsers();
+	public List<User> fetchAllUsers() {
+		List<User> listOfUsers = usersMapper.fetchAllUsers();
 		return listOfUsers;
 	}
 
-	public Integer insert(Users user) {
+	public Integer insert(User user) {
 		Integer isInserted = usersMapper.insert(user);
 		return isInserted;
+	}
+
+	public User findUserById(Integer id) {
+		User user = usersMapper.findUserById(id);
+		return user;
 	}
 
 }
