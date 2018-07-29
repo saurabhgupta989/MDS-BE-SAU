@@ -8,7 +8,9 @@ public interface UserService {
 
 	public List<User> fetchAllUsers();
 
-	public Integer insert(User user);
+	public Integer saveUser(User user);
 
-	public User findUserById(Integer id);
+	public User retrieveUserById(Integer id);
+
+	public List<User> getAllUsersWitDogDetails();
 }

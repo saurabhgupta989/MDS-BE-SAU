@@ -22,15 +22,26 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Integer insert(User user) {
-		Integer isInserted = userDao.insert(user);
-		return isInserted;
+	public Integer saveUser(User user) {
+		Integer isInsertOrUpdateStatus;
+		if (user.getId() == null) {
+			isInsertOrUpdateStatus = userDao.insertUser(user);
+		} else {
+			isInsertOrUpdateStatus = userDao.updateUser(user);
+		}
+		return isInsertOrUpdateStatus;
 	}
 
 	@Override
-	public User findUserById(Integer id) {
-		User user = userDao.findUserById(id);
+	public User retrieveUserById(Integer id) {
+		User user = userDao.retrieveUserById(id);
 		return user;
+	}
+
+	@Override
+	public List<User> getAllUsersWitDogDetails() {
+		List<User> listOfUsers = userDao.fetchAllUsersWithDogs();
+		return listOfUsers;
 	}
 
 }

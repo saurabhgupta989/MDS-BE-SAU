@@ -28,6 +28,35 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> saveUser(@RequestBody User user) {
+		Integer status = userService.saveUser(user);
+
+		if (status > 0) {
+			return new ResponseEntity<Object>(user, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Object>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping(value = "/allUsers", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getAll() {
+		List<User> listOfUsers = userService.fetchAllUsers();
+		return new ResponseEntity<Object>(listOfUsers, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getAllUsersWitDogDetails() {
+		List<User> listOfUsers = userService.getAllUsersWitDogDetails();
+		return new ResponseEntity<Object>(listOfUsers, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/retrieveUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> retrieveUserById(@RequestParam Integer id) {
+		User user = userService.retrieveUserById(id);
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
+	}
+
 	@GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> index() {
 		Map<String, String> map = new HashMap<>();
@@ -35,29 +64,6 @@ public class UserController {
 		ResponseEntity<Object> response = null;
 		response = new ResponseEntity<Object>(map, HttpStatus.OK);
 		return response;
-	}
-
-	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getAll() {
-		List<User> listOfUsers = userService.fetchAllUsers();
-		return new ResponseEntity<Object>(listOfUsers, HttpStatus.OK);
-	}
-
-	@GetMapping(value = "/findUser", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> findUser(@RequestParam Integer id) {
-		User user = userService.findUserById(id);
-		return new ResponseEntity<Object>(user, HttpStatus.OK);
-	}
-
-	@PostMapping(value = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> insert(@RequestBody User user) {
-		Integer isInserted = userService.insert(user);
-
-		if (isInserted > 0) {
-			return new ResponseEntity<Object>(user, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Object>(user, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
 	}
 
 	@GetMapping("/tagJoin")

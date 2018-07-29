@@ -14,18 +14,28 @@ public class UserDao {
 	@Autowired
 	private UsersMapper usersMapper;
 
+	public Integer insertUser(User user) {
+		Integer isInserted = usersMapper.insertUser(user);
+		return isInserted;
+	}
+
+	public Integer updateUser(User user) {
+		Integer isUpdated = usersMapper.updateUser(user);
+		return isUpdated;
+	}
+
 	public List<User> fetchAllUsers() {
 		List<User> listOfUsers = usersMapper.fetchAllUsers();
 		return listOfUsers;
 	}
 
-	public Integer insert(User user) {
-		Integer isInserted = usersMapper.insert(user);
-		return isInserted;
+	public List<User> fetchAllUsersWithDogs() {
+		List<User> listOfUsers = usersMapper.fetchAllUsersWithDogs();
+		return listOfUsers;
 	}
 
-	public User findUserById(Integer id) {
-		User user = usersMapper.findUserById(id);
+	public User retrieveUserById(Integer id) {
+		User user = usersMapper.retrieveUserById(id);
 		return user;
 	}
 
