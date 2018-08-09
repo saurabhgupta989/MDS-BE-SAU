@@ -73,14 +73,16 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> index() {
+	public ResponseEntity<?> testException(@RequestParam String isExc) {
 		logger.info("index invoked");
 		logger.debug("index invoked");
 		Map<String, String> map = new HashMap<>();
 		map.put("name", "Hello World Success");
+
 		ResponseEntity<Object> response = null;
 		response = new ResponseEntity<Object>(map, HttpStatus.OK);
 		return response;
+
 	}
 
 	@GetMapping("/tagJoin")
@@ -89,4 +91,5 @@ public class UserController {
 		logger.debug("getTagJoin invoked");
 		return usersMapper.findTagJoin();
 	}
+
 }

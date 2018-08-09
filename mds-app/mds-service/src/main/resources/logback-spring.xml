@@ -60,6 +60,7 @@
 			<appender-ref ref="STDOUT"></appender-ref>
 		</logger>
 	</springProfile>
+
 	<!-- Prod environemnt -->
 	<springProfile name="prod">
 		<root level="error">
@@ -69,6 +70,5 @@
 			<appender-ref ref="SAVE-TO-FILE"></appender-ref>
 		</logger>
 	</springProfile>
-
 
 </configuration>
