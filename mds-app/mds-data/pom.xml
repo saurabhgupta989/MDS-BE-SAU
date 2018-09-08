@@ -7,14 +7,8 @@
 		<groupId>com.mds</groupId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-
-	<groupId>com.mds</groupId>
 	<artifactId>mds-data</artifactId>
-	<version>1.0-SNAPSHOT</version>
-
 	<name>mds-data</name>
-	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
